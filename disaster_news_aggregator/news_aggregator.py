@@ -37,3 +37,8 @@ class News_Aggregator(object):
         # maintaining the order of sequence is important for threading
         self.notify_admin()
         self.stream_posts()
+
+
+if __name__ == "__main__":
+    news = News_Aggregator('bot2')
+    news.start_aggregating()

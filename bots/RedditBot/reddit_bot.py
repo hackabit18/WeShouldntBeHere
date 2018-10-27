@@ -1,6 +1,13 @@
 import praw
 import requests as rq
 from bs4 import BeautifulSoup
+import zerorpc
+
+class RedditBotRPC(object):
+    def start_reddit_campaign(self, intensity_of_campaign, donate_link, message, number_of_posts_per_sub):
+        bot = RedditBot('bot1', intensity_of_campaign, donate_link, message)
+        bot.start_campaign(number_of_posts_per_sub)
+        return bot.permalinks
 
 class RedditBot(object):
     def __init__(self, praw_site, intensity_of_campaign, donate_link, message):
@@ -86,3 +93,7 @@ class RedditBot(object):
         self.scrap_sub_list()
         self.crawl(num_of_posts_per_sub, sort_by='rising')
         self.crawl(num_of_posts_per_sub, sort_by='hot')
+
+s = zerorpc.Server(RedditBotRPC())
+s.bind("tcp://0.0.0.0:4242")
+s.run()
