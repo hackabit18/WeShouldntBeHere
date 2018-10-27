@@ -1,3 +1,6 @@
 bots/*/.idea/*
 bots/*/venv/*
 bots/RedditBot/praw.ini
+disaster_news_aggregator/venv/*
+disaster_news_aggregator/.idea/*
+disaster_news_aggregator/praw.ini
