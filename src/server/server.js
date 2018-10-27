@@ -103,6 +103,8 @@ app.use(passport.session());
 // static store init
 app.use('/public', express.static('public'));
 app.use('/dist', express.static('dist'));
+app.use('/index', express.static('index'));
+
 
 // Multer File Store Initialization
 const storage = multer.diskStorage({
@@ -125,8 +127,7 @@ const upload = multer({ storage });
 /*---------------------------------------------------*/
 
 app.get('/', (req, res, next) => {
-  console.log(req.sessionID);
-  res.send('Home page\n');
+  res.render('index');
 });
 
 app.get('/login', (req, res, next) => {
@@ -359,6 +360,6 @@ app.post('/api/approve', (req, res, next) => {
     }
   }
 });
-app.listen(3040, () => {
-  console.log('Listening on localhost 3000');
+app.listen(4444, () => {
+  console.log('Listening on localhost 4444');
 });
