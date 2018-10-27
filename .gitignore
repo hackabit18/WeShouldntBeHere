@@ -1,0 +1,3 @@
+bots/*/.idea/*
+bots/*/venv/*
+bots/RedditBot/praw.ini
