@@ -7,7 +7,7 @@ class News_Aggregator(object):
 
         self.permalinks = list()        # contains permalinks of relevant posts
 
-        self.pattern = re.compile(r'disaster?s|calamity|calamities|earthquake?s|flood?s|terrorist?s|landslide|cyclone|epidemic')
+        self.pattern = re.compile(r'disaster?s|calamity|calamities|earthquake?s|flood?s|terrorist?s|landslide|cyclone|epidemic|tsunami')
 
 
     def stream_posts(self):
@@ -32,6 +32,7 @@ class News_Aggregator(object):
 
             # flushing permalink
             self.permalinks = list()
+
 
     def start_aggregating(self):
         # maintaining the order of sequence is important for threading

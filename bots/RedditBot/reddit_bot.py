@@ -24,9 +24,8 @@ class RedditBot(object):
         else:
             self.number_of_subreddits = 60
 
-        self.donate_link = donate_link
-
-        self.MESSAGE = message
+        self.MESSAGE = "%s\n------------------------------------------Donate here: [%s](%s)" %\
+                       (message, donate_link, donate_link)
 
 
     def scrap_sub_list(self):
@@ -71,6 +70,7 @@ class RedditBot(object):
 
     def crawl(self, number_of_posts, sort_by='rising'):
         for sub in self.to_be_subreddits:
+            print("Currently at r/%s" % sub)
             sub_reddit = self.reddit.subreddit(sub)
             if sort_by.lower() == 'rising':
                 posts = sub_reddit.rising(limit=number_of_posts)
@@ -90,9 +90,11 @@ class RedditBot(object):
 
 
     def start_campaign(self, num_of_posts_per_sub):
+        print("Campaign started...")
         self.scrap_sub_list()
         self.crawl(num_of_posts_per_sub, sort_by='rising')
         self.crawl(num_of_posts_per_sub, sort_by='hot')
+        print("Done.")
 
 s = zerorpc.Server(RedditBotRPC())
 s.bind("tcp://0.0.0.0:4242")
